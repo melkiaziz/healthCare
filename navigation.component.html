@@ -1,0 +1,34 @@
+<nav class="navbar">
+  <div class="nav-brand">Health Dashboard</div>
+  <div class="nav-links">
+    <!-- If the user is not logged in, show the Login link -->
+    <ng-container *ngIf="!isLoggedIn()">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </ng-container>
+
+    <!-- If the user is logged in, show the role-specific dashboard links -->
+    <ng-container *ngIf="isLoggedIn()">
+      <!-- If the user is an admin, show the Admin Dashboard link -->
+      <a *ngIf="getUserRole() === 'administrator'" routerLink="/admin-dashboard" routerLinkActive="active">Administrator Dashboard</a>
+
+      <!-- If the user is a doctor, show the Machine link -->
+      <a *ngIf="getUserRole() === 'doctor'" routerLink="/user-dashboard" routerLinkActive="active">Doctor Dashboard</a>
+
+      <!-- Add the Machine link for the Doctor role -->
+      <a *ngIf="getUserRole() === 'doctor'" routerLink="/machine" routerLinkActive="active">Machine</a> <!-- Link to Machine -->
+
+
+
+       <a *ngIf="getUserRole() === 'doctor'" routerLink="/patient" routerLinkActive="active">patient</a> <!-- Link to Machine -->
+
+        <a *ngIf="getUserRole() === 'administrator'" routerLink="/patient" routerLinkActive="active">patient</a> <!-- Link to Machine -->
+
+
+
+
+
+      <!-- Logout link -->
+      <a (click)="logout()" style="cursor: pointer;">Logout</a>
+    </ng-container>
+  </div>
+</nav>
